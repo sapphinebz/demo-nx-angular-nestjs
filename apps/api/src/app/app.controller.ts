@@ -1,14 +1,13 @@
-import { Message, PokemonPaginator } from '@demo-nx/api-interfaces';
-import { Controller, Get, HttpService } from '@nestjs/common';
-import { of } from 'rxjs';
+import { Message } from '@demo-nx/api-interfaces';
+import { Controller, Get, Param } from '@nestjs/common';
 import { AppService } from './app.service';
-import { map } from 'rxjs/operators';
+import { PokemonService } from './pokemon/pokemon.service';
 
 @Controller()
 export class AppController {
   constructor(
     private readonly appService: AppService,
-    private httpService: HttpService
+    private readonly pokemonService: PokemonService
   ) {}
 
   @Get('hello')
@@ -17,11 +16,7 @@ export class AppController {
   }
 
   @Get('pokemon')
-  getPokemons() {
-    return this.httpService
-      .get<PokemonPaginator>(
-        'https://pokeapi.co/api/v2/pokemon?limit=100&offset=200'
-      )
-      .pipe(map((response) => response.data));
+  getPokemons(@Param('limit') limit: number, @Param('offset') offset: number) {
+    return this.pokemonService.getPokemonOriginPaginator(limit, offset);
   }
 }

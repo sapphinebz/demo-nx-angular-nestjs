@@ -1,11 +1,12 @@
-<div style="text-align: center">
-  <h1>Welcome to nx!</h1>
-  <img
-    width="450"
-    src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png"
-    alt="Nx - Smart, Extensible Build Framework"
-  />
+<div class="grid-container">
+  <div
+    @fadeIn
+    *ngFor="let pokemon of pokemon$ | async"
+    class="pokemon-container"
+  >
+    <span>{{ pokemon.name }}</span>
+    <div>
+      <img [src]="pokemon.sprites.front_default" [alt]="pokemon.name" />
+    </div>
+  </div>
 </div>
-<div>Message: {{ hello$ | async | json }}</div>
-
-{{ pokemon$ | async | json }}

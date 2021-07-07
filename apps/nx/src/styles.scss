@@ -1,1 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 100px);
+}
+.pokemon-container {
+  display: flex;
+  place-content: center;
+  place-items: center;
+  flex-direction: column;
+}
