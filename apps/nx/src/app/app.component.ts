@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Message } from '@demo-nx/api-interfaces';
+import { Message, PokemonPaginator } from '@demo-nx/api-interfaces';
 
 @Component({
   selector: 'demo-nx-root',
@@ -9,5 +9,6 @@ import { Message } from '@demo-nx/api-interfaces';
 })
 export class AppComponent {
   hello$ = this.http.get<Message>('/api/hello');
+  pokemon$ = this.http.get<PokemonPaginator>('/api/pokemon');
   constructor(private http: HttpClient) {}
 }
